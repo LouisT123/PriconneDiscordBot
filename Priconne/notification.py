@@ -212,7 +212,7 @@ class Notification:
             if start_time > utc - datetime.timedelta(hours=1) and start_time < utc + datetime.timedelta(hours=23):
                 # "StartDate > DATE_SUB(NOW(), INTERVAL 1 HOUR) AND StartDate < DATE_ADD(NOW(), INTERVAL 23 HOUR)"
                 starting_events.append(event)
-            elif end_time < utc + datetime.timedelta(hours=24) and end_time > utc:
+            elif end_time < utc + datetime.timedelta(hours=24) and end_time > utc and end_time - start_time > datetime.timedelta(hours=1):
                 # "EndDate < DATE_ADD(NOW(), INTERVAL 1 DAY) AND EndDate > NOW()"
                 ending_events.append(event)
         if len(starting_events):
